@@ -1,0 +1,103 @@
+# signals.yaml — World Labs signal collection config
+#
+# Run: python -m collectors.run (from wl-playground root, with pm-playbook in PYTHONPATH)
+# Or:  PYTHONPATH=pm-playbook python -m collectors.run
+
+company:
+  name: "World Labs"
+  keywords:
+    - "world labs"
+    - "marble api"
+    - "spatial intelligence"
+    - "large world model"
+    - "fei-fei li world"
+    - "rtfm world labs"
+    - "real-time frame model"
+    - "real time world model"
+
+competitors:
+  - name: "Google Genie"
+    keywords:
+      - "genie 3 google"
+      - "google genie"
+      - "genie ai worlds"
+  - name: "Runway"
+    keywords:
+      - "runway ml"
+      - "runway gen"
+  - name: "NVIDIA Cosmos"
+    keywords:
+      - "nvidia cosmos"
+      - "cosmos world foundation"
+  - name: "Decart"
+    keywords:
+      - "decart ai"
+      - "lucy 2.0 decart"
+
+output:
+  directory: "context/signals"
+  evidence_tag: "SIGNAL"
+
+collectors:
+
+  github:
+    enabled: true
+    output_file: "github-ecosystem.md"
+    repos:
+      - "worldlabsai/worldlabs-api-examples"
+      - "worldlabsai/worldlabs-api-python"
+      - "willemhelmet/marble-api-quickstart"
+      - "NVIDIA/cosmos"
+
+  hackernews:
+    enabled: true
+    output_file: "hackernews-sentiment.md"
+    queries:
+      - "world labs"
+      - "marble api"
+      - "spatial intelligence"
+      - "genie 3 google"
+      - "gaussian splatting"
+      - "large world model"
+      - "rtfm world labs"
+      - "real-time frame model"
+    lookback_days: 60
+    max_per_query: 15
+
+  reddit:
+    enabled: true
+    output_file: "reddit-discussions.md"
+    subreddits:
+      - "MachineLearning"
+      - "gamedev"
+      - "robotics"
+      - "computervision"
+      - "3Dmodeling"
+    queries:
+      - "world labs"
+      - "marble api"
+      - "spatial intelligence"
+      - "gaussian splatting"
+    time_filter: "month"
+    max_per_subreddit: 10
+
+  news:
+    enabled: true
+    output_file: "news-coverage.md"
+    queries:
+      - "World Labs AI"
+      - "Fei-Fei Li World Labs"
+      - "spatial intelligence startup"
+      - "large world model AI"
+    lookback_days: 60
+    max_per_query: 10
+    language: "en"
+
+  discord:
+    enabled: false
+    # World Labs Discord: https://discord.gg/jSSSgXWT3v
+    # Requires bot token with message read permissions
+
+  twitter:
+    enabled: false
+    # Requires $200/mo Twitter API Basic plan
